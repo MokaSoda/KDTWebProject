@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>감정 분석 웹사이트</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>감정 분석 웹사이트</h1>
+        <p>녹음 버튼을 클릭하면 녹음 후 현재 기분을 분석후 <br>이에 대한 답변을 해줍니다.</p>
+    </header>
+    <p>
+        <button id="recordButton">녹음 하기</button>
+        <button id="stopButton" disabled>녹음 종료</button>
+    </p>
+    {% if transcript != "" %}
+    <article hidden=true>
+        <section id="result">
+            <h3 class="resultmsg">인식된 문장은 다음과 같습니다</h3>
+            <p id="resultsentence">{{ transcript }}</p>
+            <h3 class="resultmsg">인식된 감정은 다음과 같습니다</h3>
+            <p id="resultemotion">{{ emotion }}</p>
+        </section>
+
+        <section id="resultchat">
+            <h3 class="resultmsg">해당 문장에 대한 조언은 다음과 같습니다.</h3>
+            <p id="resultsentence">{{ response }}</p>
+        </section>
+    </article>
+    {% endif %}
+
+</body>
+<!-- <script src="js/recorder.js"></script>
+<script src="js/app.js"></script> -->
+<script src="{{url_for('static', filename='js/recordsetup.js')}}"></script>
+<script src="{{url_for('static', filename='js/Resampler.js')}}"></script>
+<script src="{{url_for('static', filename='js/util.js')}}"></script>
+</html>
+
+
